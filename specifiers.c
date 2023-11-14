@@ -3,10 +3,10 @@
 #include <stdarg.h>
 
 int _printf(const char *format, ...) {
+	int count = 0;
     va_list argument;
     va_start(argument, format);
 
-    int count = 0;
     while (*format != '\0') 
     {
         if (*format == '%') 
@@ -15,7 +15,7 @@ int _printf(const char *format, ...) {
             if (*format == 'c') 
 	    {
                 int character = va_arg(argument, int);
-                _putchar(character);
+                putchar(character);
                 count++;
             }
             else if (*format == 's') 
@@ -30,13 +30,13 @@ int _printf(const char *format, ...) {
             }
             else if (*format == '%') 
 	    {
-                _putchar('%');
+                putchar('%');
                 count++;
             }
         }
         else 
 	{
-            _putchar(*format);
+            putchar(*format);
             count++;
         }
         format++;
