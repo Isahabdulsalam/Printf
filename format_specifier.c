@@ -1,37 +1,28 @@
 #include "main.h"
 #include <stdarg.h>
+#include <stdio.h>
 
-/**
- * _spec - function to handle format specifiera
- * @format: string character
- * Return: value
- */
 
-int _spec(const char *format, ...)
-{
-	int count = 0;
-	va_list argument;
-	va_start(argument, format);
+int custom_printf(const char *format, ...) {
+    va_list args;
+    va_start(args, format);
 
-	while (*format != '\0')
-	{
-		if (*format == '%')
-		{
-			format++;
-			if (*format == 'd' || *format == 'i')
-			{
-				int word = va_arg(argument, int);
-				printf("%d", word);
-				count++;
-			}
-		}
-		else
-		{
-			putchar(*format);
-			count++;
-		}
-		format++;
-	}
-	va_end(argument);
-	return (count);
+    int num = 0;
+    int count = 0;
+
+    while (*format != '\0') {
+        if (*format == '%' && (*(format + 1) == 'd' || *(format + 1) == 'i')) {
+            num = va_arg(args, int);
+            printf("%d", num);
+            count++;
+        } else {
+            putchar(*format);
+            count++;
+        }
+        format++;
+    }
+
+    va_end(args);
+    return count;
 }
+
