@@ -1,6 +1,12 @@
 #include "main.h"
 #include <stdarg.h>
 
+/**
+ * _spec - function to handle format specifiera
+ * @format: string character
+ * Return: value
+ */
+
 int _spec(const char *format, ...)
 {
 	int count = 0;
